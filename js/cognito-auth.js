@@ -58,7 +58,7 @@ var WildRydes = window.WildRydes || {};
    * Cognito User Pool functions
    */
 
-  function register(email, name, password, onSuccess, onFailure) {
+  function register(email, password, onSuccess, onFailure) {
     var dataEmail = {
       Name: "email",
       Value: email,
