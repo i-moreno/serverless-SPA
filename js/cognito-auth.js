@@ -64,21 +64,14 @@ var WildRydes = window.WildRydes || {};
       Value: email,
     };
 
-    var dataName = {
-      Name: "name",
-      Value: name,
-    };
     var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(
       dataEmail
-    );
-    var attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
-      dataName
     );
 
     userPool.signUp(
       toUsername(email),
       password,
-      [attributeEmail, attributeName],
+      [attributeEmail],
       null,
       function signUpCallback(err, result) {
         if (!err) {
@@ -159,7 +152,6 @@ var WildRydes = window.WildRydes || {};
 
   function handleRegister(event) {
     var email = $("#emailInputRegister").val();
-    var name = $("#nameRegister").val();
     var password = $("#passwordInputRegister").val();
     var password2 = $("#password2InputRegister").val();
 
@@ -178,7 +170,7 @@ var WildRydes = window.WildRydes || {};
     event.preventDefault();
 
     if (password === password2) {
-      register(email, name, password, onSuccess, onFailure);
+      register(email, password, onSuccess, onFailure);
     } else {
       alert("Passwords do not match");
     }
